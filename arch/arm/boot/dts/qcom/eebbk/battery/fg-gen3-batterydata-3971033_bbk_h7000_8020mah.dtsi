@@ -1,0 +1,77 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&mtp_batterydata {
+	qcom,3971033_bbk_h7000_8020mah_pm660_averaged_masterslave_may8th2019 {
+		/* 3971033_BBK_H7000_8020mAh_averaged_MasterSlave_May8th2019 */
+		qcom,max-voltage-uv = <4400000>;
+		qcom,fastchg-current-ma = <2000>;
+		qcom,fg-cc-cv-threshold-mv = <4390>;
+		qcom,nom-batt-capacity-mah = <8000>;
+		qcom,batt-id-kohm = <50>;
+		qcom,battery-beta = <3440>;
+		qcom,battery-type = "BBK_h7000_gy_8020mah_pm660";
+		qcom,checksum = <0xE5B5>;
+		qcom,gui-version = "PM660GUI - 0.0.0.45";
+		qcom,fg-profile-data = [
+			B0 1F 66 05
+			B2 0A 0E 06
+			D8 1C EA 01
+			EB 0D 66 0A
+			44 17 BD 23
+			DB 44 9E 53
+			79 00 00 00
+			12 00 00 00
+			00 00 00 A4
+			61 CD 62 B3
+			13 00 08 00
+			CD DB 72 E5
+			B6 05 60 01
+			C5 01 4D 1A
+			B1 0D F6 2B
+			1E 06 09 20
+			27 00 14 00
+			F0 1F 42 05
+			D3 0A E3 05
+			C7 1C E0 02
+			2A 0C 1A 12
+			93 18 55 23
+			D2 44 1B 5A
+			6C 00 00 00
+			10 00 00 00
+			00 00 EC D5
+			04 00 0F C5
+			10 00 00 00
+			39 E3 72 E5
+			35 FC 0C 01
+			D9 FC DF 03
+			E3 05 89 12
+			99 33 CC FF
+			07 10 00 00
+			E7 1F 66 46
+			10 00 40 00
+			D0 00 0A FA
+			FF 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+		];
+	};
+};

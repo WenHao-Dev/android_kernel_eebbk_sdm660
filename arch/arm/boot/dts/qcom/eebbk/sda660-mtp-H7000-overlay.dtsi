@@ -1,0 +1,194 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "audio/sda660-audio-tfa98xxx.dtsi"
+#include "battery/sda660-battery-H7000.dtsi"
+#include "display/sda660-display-H7000.dtsi"
+
+&i2c_1 {
+	status = "ok";
+
+	focaltech@38 {
+		compatible = "focaltech,fts";
+		reg = <0x38>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <67 0x2800>;
+		focaltech,irq-gpio = <&tlmm 67 0x2>;
+		focaltech,reset-gpio = <&tlmm 66 0x0>;
+		focaltech,display-coords = <0x0 0x0 0x640 0x880>;
+		focaltech,max-touch-number = <10>;
+		status = "okay";
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend", "pmx_ts_release";
+		pinctrl-0 = <&ts_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		pinctrl-2 = <&ts_release>;
+		vdd-supply = <&pm660l_l6>;
+		vcc_i2c-supply = <&pm660_l13>;
+	};
+};
+
+&i2c_2 {
+	status = "ok";
+
+	ktz8864@11 {
+		compatible = "ti,ktz8864";
+		reg = <0x11>;
+		ktz8864-en-gpio = <&tlmm 65 0x0>;
+	};
+
+	ti65132s@3e {
+		compatible = "ti,ti65132";
+		reg = <0x3e>;
+	};
+};
+
+&pm660l_wled {
+	status = "disabled";
+};
+
+&pm660_haptics {
+	status = "disabled";
+};
+
+&ssphy {
+	status = "disabled";
+};
+
+&cam_avdd_gpio_regulator {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <2800000>;
+};
+
+&cam_actuator_regulator {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <2800000>;
+};
+
+&cam_rear_dvdd_gpio_regulator {
+	regulator-min-microvolt = <1000000>;
+	regulator-max-microvolt = <1000000>;
+};
+
+&cont_splash_mem {
+	reg = <0x0 0x9d400000 0x0 0x2400000>;
+};
+
+&soc {
+	cam_front_dvdd_fixed_regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "cam_front_dvdd_gpio_regulator";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		enable-active-high;
+		gpio = <&pm660l_gpios 3 0x0>;
+		vin-supply = <&pm660_s5>;
+	};
+};
+
+&tlmm {
+	ts_int_defalut: ts_int_defalut {
+		mux {
+			pins = "gpio67";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio67";
+			bias-disable;
+			drive-strength = <16>;
+			input-enable;
+		};
+	};
+
+	ts_int_input: ts_int_input {
+		mux {
+			pins = "gpio67";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio67";
+			bias-disable;
+			input-enable;
+		};
+	};
+
+	ts_int_output_high: ts_int_output_high {
+		mux {
+			pins = "gpio67";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio67";
+			output-high;
+		};
+	};
+
+	ts_int_output_low: ts_int_output_low {
+		mux {
+			pins = "gpio67";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio67";
+			output-low;
+		};
+	};
+
+	ts_mux {
+		ts_active: ts_active {
+			mux {
+				pins = "gpio66", "gpio67";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio66", "gpio67";
+				bias-pull-up;
+				drive-strength = <16>;
+			};
+		};
+
+		ts_int_suspend: ts_int_suspend {
+			mux {
+				pins = "gpio67";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio67";
+				bias-disable;
+				drive-strength = <2>;
+			};
+		};
+
+		ts_reset_suspend: ts_reset_suspend {
+			mux {
+				pins = "gpio66";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio66";
+				bias-pull-down;
+				drive-strength = <2>;
+			};
+		};
+
+		ts_release: ts_release {
+			mux {
+				pins = "gpio66", "gpio67";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio66", "gpio67";
+				bias-pull-down;
+			};
+		};
+	};
+};

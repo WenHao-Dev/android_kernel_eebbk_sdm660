@@ -1,0 +1,60 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* Kill old panel config */
+&mdss_mdp {
+	/delete-node/ qcom,mdss_dsi_nt35597_wqxga_video_truly;
+};
+
+/* Import new panel config */
+#include "dsi-panel-nt35597-truly-dualmipi-wqxga-video-vendor.dtsi"
+
+&dsi_dual_nt35597_truly_video {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_pwm";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+
+	qcom,mdss-dsi-panel-timings-phy-v2 = [
+		22 1e 07 08 04 02 04 a0
+		22 1e 07 08 04 02 04 a0
+		22 1e 07 08 04 02 04 a0
+		22 1e 07 08 04 02 04 a0
+		22 17 07 08 04 02 04 a0];
+
+	qcom,mdss-dsi-panel-status-check-mode = "reg_read";
+	qcom,mdss-dsi-panel-status-command = [06 01 00 01 00 00 01 0a];
+	qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
+	qcom,mdss-dsi-panel-status-value = <0x9c>;
+	qcom,mdss-dsi-panel-on-check-value = <0x9c>;
+	qcom,mdss-dsi-panel-status-read-length = <1>;
+	qcom,mdss-dsi-panel-max-error-count = <3>;
+	qcom,mdss-dsi-min-refresh-rate = <53>;
+	qcom,mdss-dsi-max-refresh-rate = <60>;
+	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+	qcom,mdss-dsi-bl-pmic-pwm-frequency = <200>;
+	qcom,mdss-dsi-bl-pwm-pmi;
+	pwms = <0x24e 0x00 0x00>;
+};
+
+&mdss_dsi_active {
+	mux {
+		pins = "gpio53", "gpio0", "gpio1";
+	};
+
+	config {
+		pins = "gpio53", "gpio0", "gpio1";
+	};
+};
+
+&mdss_dsi_suspend {
+	mux {
+		pins = "gpio53", "gpio0", "gpio1";
+	};
+
+	config {
+		pins = "gpio53", "gpio0", "gpio1";
+	};
+};

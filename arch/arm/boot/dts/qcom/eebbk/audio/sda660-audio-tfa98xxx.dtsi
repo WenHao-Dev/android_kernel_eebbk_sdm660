@@ -1,0 +1,123 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&i2c_2 {
+	tfa98xx@34 {
+		compatible = "nxp,tfa98xx";
+		reg = <0x34>;
+		irq-gpio = <&tlmm 30 0x0>;
+		reset-gpio = <&tlmm 12 0x0>;
+		interrupts = <30 0x0>;
+		interrupt-names = "nxp_r_irq";
+	};
+
+	tfa98xx@35 {
+		compatible = "nxp,tfa98xx";
+		reg = <0x35>;
+		irq-gpio = <&tlmm 31 0x0>;
+		reset-gpio = <&tlmm 62 0x0>;
+		interrupts = <31 0x0>;
+		interrupt-names = "nxp_l_irq";
+	};
+};
+
+&tlmm {
+	sec_mi2s {
+		sec_mi2s_active: sec_mi2s_active {
+			mux {
+				pins = "gpio24", "gpio25";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio24", "gpio25";
+				drive-strength = <8>;
+				bias-disable;
+			};
+		};
+
+		sec_mi2s_sleep: sec_mi2s_sleep {
+			mux {
+				pins = "gpio24", "gpio25";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio24", "gpio25";
+				drive-strength = <2>;
+				bias-disable;
+				input-enable;
+			};
+		};
+	};
+
+	sec_mi2s_sd0 {
+		sec_mi2s_sd0_active: sec_mi2s_sd0_active {
+			mux {
+				pins = "gpio26";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio26";
+				drive-strength = <8>;
+				bias-disable;
+			};
+		};
+
+		sec_mi2s_sd0_sleep: sec_mi2s_sd0_sleep {
+			mux {
+				pins = "gpio26";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio26";
+				drive-strength = <2>;
+				bias-pull-down;
+				input-enable;
+			};
+		};
+	};
+
+	sec_mi2s_sd1 {
+		sec_mi2s_sd1_active: sec_mi2s_sd1_active {
+			mux {
+				pins = "gpio27";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio27";
+				drive-strength = <8>;
+				bias-disable;
+			};
+		};
+
+		sec_mi2s_sd1_sleep: sec_mi2s_sd1_sleep {
+			mux {
+				pins = "gpio27";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio27";
+				drive-strength = <2>;
+				bias-pull-down;
+				input-enable;
+			};
+		};
+	};
+};
+
+&dai_mi2s1 {
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sec_mi2s_active &sec_mi2s_sd0_active &sec_mi2s_sd1_active>;
+	pinctrl-1 = <&sec_mi2s_sleep &sec_mi2s_sd0_sleep &sec_mi2s_sd1_sleep>;
+};
+
+&tavil_snd {
+	status = "disabled";
+};

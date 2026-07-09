@@ -1,0 +1,46 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* Kill old battery config */
+&mtp_batterydata {
+	/delete-node/ qcom,itech_3000mah;
+	/delete-node/ qcom,ascent_3450mah;
+};
+
+/* Import new battery config */
+#include "fg-gen3-batterydata-3864045_vivo_h7000_atl_8000mah.dtsi"
+#include "fg-gen3-batterydata-3971033_bbk_h7000_8020mah.dtsi"
+
+&i2c_2 {
+	smb1351-charger@1d {
+		compatible = "qcom,smb1351-charger";
+		reg = <0x1d>;
+		qcom,parallel-charger;
+		qcom,float-voltage-mv = <4400>;
+		qcom,recharge-mv = <100>;
+		qcom,parallel-en-pin-polarity = <1>;
+		status = "disabled";
+	};
+};
+
+&pm660_charger {
+	qcom,micro-usb;
+	qcom,fcc-max-ua = <2000000>;
+	qcom,fv-max-uv = <4400000>;
+	qcom,usb-icl-ua = <2000000>;
+	qcom,dc-icl-ua = <2000000>;
+	qcom,otg-cl-ua = <500000>;
+	qcom,sw-jeita-enable;
+	qcom,hvdcp-disable;
+	qcom,thermal-mitigation = <2000000 2000000 2000000 1500000 1000000 500000>;
+};
+
+&pm660_fg {
+	qcom,battery-data = <&mtp_batterydata>;
+};
+
+&pm660_pdphy {
+	status = "disabled";
+};

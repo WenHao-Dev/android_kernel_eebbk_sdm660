@@ -1,0 +1,77 @@
+/*
+ * SPDX-FileCopyrightText: The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&mtp_batterydata {
+	qcom,3864045_vivo_h7000_atl_8000mah_pm660_fg_averaged_masterslave_feb12th2019 {
+		/* 3864045_VIVO_H7000_ATL_8000mAh_averaged_MasterSlave_Feb12th2019 */
+		qcom,max-voltage-uv = <4400000>;
+		qcom,fastchg-current-ma = <2000>;
+		qcom,fg-cc-cv-threshold-mv = <4390>;
+		qcom,nom-batt-capacity-mah = <8000>;
+		qcom,batt-id-kohm = <100>;
+		qcom,battery-beta = <3440>;
+		qcom,battery-type = "BBK_h7000_atl_8020mah_pm660";
+		qcom,checksum = <0xA5E6>;
+		qcom,gui-version = "PM660GUI - 0.0.0.45";
+		qcom,fg-profile-data = [
+			DF 21 8C 0D
+			21 12 B4 04
+			00 1D F1 FA
+			5B 05 33 03
+			F1 17 90 23
+			D2 44 DF 53
+			92 00 00 00
+			11 00 00 00
+			00 00 C4 B2
+			1F CD AA AA
+			15 00 08 00
+			EC E2 B9 07
+			36 06 7B F3
+			6B 02 1F 1A
+			7F 04 0D 33
+			1B 06 09 20
+			27 00 14 00
+			A4 20 6D 04
+			6D 0B 57 05
+			D6 1C B9 02
+			7A 0C C8 0B
+			A1 18 89 23
+			63 44 8F 5A
+			74 00 00 00
+			0F 00 00 00
+			00 00 C1 D5
+			03 00 F2 C2
+			11 00 00 00
+			FC EA B9 07
+			96 06 95 00
+			55 F5 AF 03
+			E9 EB 94 1B
+			B9 33 CC FF
+			07 10 00 00
+			0B 20 66 46
+			11 00 40 00
+			C4 00 0A FA
+			FF 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+		];
+	};
+};

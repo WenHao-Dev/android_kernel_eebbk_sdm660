@@ -1,3 +1,6 @@
+ifeq ($(CONFIG_MACH_EEBBK_SDM660),y)
+dts-dirs += eebbk
+else # CONFIG_MACH_EEBBK_SDM660
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 dtbo-$(CONFIG_ARCH_MSM8996) += \
 	msm8996-mtp-overlay.dtbo \
@@ -324,6 +327,7 @@ dtb-$(CONFIG_ARCH_SDM630) += sdm630-rumi.dtb \
 	sdm455-cdp.dtb \
 	sdm455-rcm.dtb \
 	sdm455-internal-codec-rcm.dtb
+endif # CONFIG_MACH_EEBBK_SDM660
 
 ifeq ($(CONFIG_ARM64),y)
 always          := $(dtb-y)
