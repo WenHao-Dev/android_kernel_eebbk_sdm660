@@ -1,0 +1,24 @@
+# EEBBK configuration options
+
+config MACH_EEBBK
+	bool "EEBBK device"
+	depends on ARCH_QCOM
+	help
+	  Support for EEBBK products
+
+config MACH_EEBBK_SDM660
+	bool "EEBBK SDM660"
+	depends on ARCH_QCOM
+	select MACH_EEBBK
+	help
+	  Support for EEBBK SDM660 devices
+
+menu "EEBBK board selection"
+
+config MACH_EEBBK_H7000
+  bool "EEBBK S5 board"
+  select MACH_EEBBK_SDM660
+  help
+    Support for EEBBK S5 (H7000)
+
+endmenu
